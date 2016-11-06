@@ -52,13 +52,17 @@ class MessageParser
      */
     protected function fakeValidationData($attribute, $rule, $parameters)
     {
-        $files = $this->validator->getFiles();
+		// sb, 06.11.2016, dont validate files (missing in L5.3+)
+        // $files = $this->validator->getFiles();
         $data = $this->validator->getData();
 
-        $this->fakeFileData($files, $attribute);
+		// sb, 06.11.2016, dont validate files (missing in L5.3+)
+        // $this->fakeFileData($files, $attribute);
         $this->fakeRequiredIfData($data, $rule, $parameters);
 
-        return compact('data', 'files');
+		// sb, 06.11.2016, dont validate files (missing in L5.3+)
+        // return compact('data', 'files');
+		return compact('data');
     }
 
     /**
@@ -103,7 +107,8 @@ class MessageParser
      */
     protected function setValidationData($data)
     {
-        $this->validator->setFiles($data['files']);
+		// sb, 06.11.2016, dont validate files (missing in L5.3+)
+        // $this->validator->setFiles($data['files']);
         $this->validator->setData($data['data']);
     }
 }
